@@ -1,5 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
+from functions.myfn import downloader,converter
+
+
 description = """
     https://api.domain.com/{ticker}/{interval}
     # valid ticker:EURUSD,AUDUSD,GBPUSD,NZDUSD,EURJPY,GBPJPY,EURGBP,EURCAD,EURSEK...()
@@ -25,10 +28,13 @@ def root():
 
 @app.get("/forex/{currency}/{interval}")
 def forex(currency:str,interval:str):
-    return {
-        "currency":currency,
-        "interval":interval
-    }
+    return converter(
+        downloader(
+            ticker=currency, 
+            interval=interval
+        )
+    )
+    
 
 if __name__ == "__main__":
     uvicorn.run(

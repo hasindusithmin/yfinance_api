@@ -1,5 +1,5 @@
 import yfinance as yf
-from time import mktime
+from datetime import datetime
 def downloader(ticker,interval):
   period = None
   ticker = f"{ticker}=x"
@@ -21,16 +21,15 @@ def downloader(ticker,interval):
   )
   return df.reset_index()
 
-def converter():
-  df = downloader("eurusd","5m")
+def converter(df):
   data = []
   for index, row in df.iterrows():
     candle = {}
     unix = int(
-        mktime(
-            row["Datetime"].timetuple()
-        )
+        datetime.timestamp(
+        row["Datetime"]
     ) + 19800
+    )
     candle.update({
         "time": unix,
         "open": row["Open"],
