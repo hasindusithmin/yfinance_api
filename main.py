@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-
 description = """
     https://api.domain.com/{ticker}/{interval}
     # valid ticker:EURUSD,AUDUSD,GBPUSD,NZDUSD,EURJPY,GBPJPY,EURGBP,EURCAD,EURSEK...()
@@ -20,10 +19,9 @@ app = FastAPI(
     },
 )
 
-
 @app.get("/")
 def root():
-    return "HelloWorld"
+    return "welcome to finance api"
 
 
 if __name__ == "__main__":
