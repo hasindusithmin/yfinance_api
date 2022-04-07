@@ -23,6 +23,12 @@ app = FastAPI(
 def root():
     return "welcome to finance api"
 
+@app.get("/forex/{currency}/{interval}")
+def forex(currency:str,interval:str):
+    return {
+        "currency":currency,
+        "interval":interval
+    }
 
 if __name__ == "__main__":
     uvicorn.run(
