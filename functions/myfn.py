@@ -2,7 +2,6 @@ import yfinance as yf
 from datetime import datetime
 def downloader(ticker,interval):
   period = None
-  ticker = f"{ticker}=x"
   short = ["5m","15m","30m","1h"]
   period = "1mo" if interval in short else "max"
   df =  yf.download(
