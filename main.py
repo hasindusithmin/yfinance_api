@@ -34,12 +34,16 @@ def root():
 
 @app.get("/data/{currency}/{interval}")
 def forex(currency:str,interval:str):
-    return converter(
-        downloader(
-            ticker=currency, 
-            interval=interval
+    output = None
+    if currency.upper() in symbol:
+        output = converter(
+            downloader(
+                ticker=currency, 
+                interval=interval
+            )
         )
-    )
+    else:
+        output = {'error':'currency not found'}
 
 @app.get("/news/{currency}")
 def get_news(currency:str):
