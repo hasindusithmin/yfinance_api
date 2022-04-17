@@ -44,6 +44,7 @@ def forex(currency:str,interval:str):
         )
     else:
         output = {'error':'currency not found'}
+    return output
 
 @app.get("/news/{currency}")
 def get_news(currency:str):
